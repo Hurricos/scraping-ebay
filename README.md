@@ -9,8 +9,8 @@ for sorting by price per lot. The script `parselots` uses this eBay
 scraping framework and adds some Perl to enable the parsing of lot data.
 
 An example run of the output of `parselots` on the term "ssd lot" can
-be found in [`example/ssd lot.csv`](example/ssd lot.csv) and
-[`example/ssd lot.lot.csv`](example/ssd lot.lot.csv).
+be found in [example/ssd lot.csv](./example/ssd lot.csv) and
+[example/ssd lot.lot.csv](./example/ssd lot.lot.csv).
 
 ## Old examples
 An example of the scraped data can be found in the ***data/*** folder.
