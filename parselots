@@ -1,0 +1,43 @@
+#!/bin/bash
+
+function createDirSkeleton {
+    mkdir -v -p data
+    mkdir -v -p lotdata
+}
+
+function activateVenv {
+    [ ! -f "./bin/activate" ] &&
+        echo "You need a python venv set up; see README.md" &&
+        exit 1
+
+    . bin/activate
+}
+
+function getSearchTerm {
+    read -ep "Enter search query to parse lot quantity info for: " query
+    [ ! "$query" ] && echo "You must enter a query." && exit 2
+}
+
+function runScrapy () {
+    scrapy crawl ebay -a search="$query" -o ./data/"$query".csv
+}
+
+WORKING_DIR="$(dirname $0)"
+
+cd "$WORKING_DIR"
+createDirSkeleton
+activateVenv
+getSearchTerm
+runScrapy
+
+QUERY_OUTPUT_FILE="$WORKING_DIR/data/$query.csv"
+LOT_OUTPUT_FILE="$WORKING_DIR/lotdata/$query.lots.csv"
+
+perl ./perl/parseLotAmounts.pl "$WORKING_DIR/data/$query.csv" \
+     > "$WORKING_DIR/lotdata/$query.lots.csv"
+
+echo "Lot data parsed and placed as CSV into $LOT_OUTPUT_FILE"
+
+
+
+
