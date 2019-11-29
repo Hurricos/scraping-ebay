@@ -47,8 +47,10 @@ Then:
     cd scraping-ebay/
     python3 -m venv .
     source bin/activate             # Enters the virtual environment
-    python3 -m pip install scrapy   # Installs under the virtuan environment
+    python3 -m pip install scrapy   # Installs under the virtual environment
     
+The script [`setup-venv.sh`](.setup-venv.sh) runs these if you like.
+
 ### Search string
 
 The default search string is *nintendo switch console* and it can be changed in the command line with the *-a* flag.
